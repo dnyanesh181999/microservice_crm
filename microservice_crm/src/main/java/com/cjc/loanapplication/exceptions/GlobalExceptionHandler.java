@@ -57,6 +57,21 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<APIError>(error,HttpStatus.BAD_REQUEST);
 	}
 	
+	@ExceptionHandler(NoPendingEnquiryFoundException.class)
+	public ResponseEntity<APIError> noPendingEnquiryFoundException(NoPendingEnquiryFoundException e, HttpServletRequest request)
+	{
+		
+		APIError error=new APIError();
+		error.setDate(new Date());
+		error.setStatuscode(HttpStatus.BAD_REQUEST.value());
+		error.setMessage(e.getMessage());
+		error.setPath(request.getRequestURI());
+		error.setHttpmessage(HttpStatus.BAD_REQUEST);
+		
+		return new ResponseEntity<APIError>(error,HttpStatus.BAD_REQUEST);
+		
+	}
+	
 	
 	@ExceptionHandler(NoEnquiryFoundToUpdateException.class)
 	public ResponseEntity<APIError> noEnquiryFoundToUpdateException(NoEnquiryFoundToUpdateException e,HttpServletRequest request)
