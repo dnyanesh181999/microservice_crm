@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.cjc.loanapplication.exceptions.NoApprovedEnquiryFoundException;
 import com.cjc.loanapplication.exceptions.NoEnquiryFoundException;
 import com.cjc.loanapplication.exceptions.NoEnquiryFoundToUpdateException;
+import com.cjc.loanapplication.exceptions.NoPendingEnquiryFoundException;
 import com.cjc.loanapplication.exceptions.NoRejectedEnquiryFoundException;
 import com.cjc.loanapplication.model.Enquiry;
 import com.cjc.loanapplication.repository.CrmRepository;
@@ -63,6 +64,21 @@ public class CrmServiceimpl implements CrmServicei {
 		}
 		
 	
+	@Override
+	public List<Enquiry> getStatusPending() {
+		List<Enquiry> pending=crp.findAllByRemark("Pending");
+		
+		if(!pending.isEmpty())
+		{
+			return pending;
+		}
+		else
+		{
+			throw new NoPendingEnquiryFoundException("No Pending Enquiry found");
+		}
+
+	}
+	
 
 	@Override
 	public Enquiry updateEnquiry(Integer enquiryId, Enquiry e) {
@@ -84,6 +100,8 @@ public class CrmServiceimpl implements CrmServicei {
 			throw new NoEnquiryFoundToUpdateException("No Enquiry found to update...!");
 		}
 	}
+
+	
 	
 
 }

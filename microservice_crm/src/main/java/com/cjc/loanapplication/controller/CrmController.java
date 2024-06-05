@@ -56,6 +56,16 @@ public class CrmController {
 	}
 	
 	
+	@GetMapping("/getStatusPending")
+	public ResponseEntity<List<Enquiry>> getStatusPending()
+	{
+		List<Enquiry> pending=csi.getStatusPending();
+		log.info("Getting Pending Enquiries");
+		
+		return new ResponseEntity<List<Enquiry>>(pending,HttpStatus.OK);
+	}
+	
+	
 	
 	@PutMapping("/updateEnquiry/{enquiryId}")
 	public ResponseEntity<Enquiry> updateEnquiry(@PathVariable Integer enquiryId,@RequestBody Enquiry e)
