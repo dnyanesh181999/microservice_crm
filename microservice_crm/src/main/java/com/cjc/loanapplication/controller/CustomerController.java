@@ -20,7 +20,9 @@ import com.cjc.loanapplication.model.Profession;
 import com.cjc.loanapplication.servicei.CustomerServiceI;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/customer")
@@ -67,7 +69,7 @@ public class CustomerController {
 	
 		
 		Customer c=csi.saveCustomer(cust);
-		
+		log.info("Loan Application save sucessfully");
 		return new ResponseEntity<Customer>(c,HttpStatus.CREATED);
 		
 	}
