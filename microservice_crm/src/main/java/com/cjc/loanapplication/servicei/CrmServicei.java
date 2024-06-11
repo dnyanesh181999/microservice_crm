@@ -16,4 +16,6 @@ public interface CrmServicei {
 
 	List<Enquiry> getStatusPending();
 
+	Enquiry getEnquiryById(Integer enquiryId);
+
 }

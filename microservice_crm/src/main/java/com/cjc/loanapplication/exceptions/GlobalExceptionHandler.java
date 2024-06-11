@@ -98,4 +98,18 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<Map<String,String>>(error,HttpStatus.BAD_REQUEST);
 	}
 	
+	@ExceptionHandler(EnquiryIdNotFoundException.class)
+	public ResponseEntity<APIError> enquiryIdNotFoundException(EnquiryIdNotFoundException e, HttpServletRequest request)
+	{
+		APIError error=new APIError();
+		error.setDate(new Date());
+		error.setStatuscode(HttpStatus.BAD_REQUEST.value());
+		error.setMessage(e.getMessage());
+		error.setPath(request.getRequestURI());
+		error.setHttpmessage(HttpStatus.BAD_REQUEST);
+		
+		return new ResponseEntity<APIError>(error,HttpStatus.BAD_REQUEST);
+		
+	}
+	
 }
