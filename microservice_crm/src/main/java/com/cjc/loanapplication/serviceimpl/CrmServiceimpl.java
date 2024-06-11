@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cjc.loanapplication.exceptions.EnquiryIdNotFoundException;
 import com.cjc.loanapplication.exceptions.NoApprovedEnquiryFoundException;
 import com.cjc.loanapplication.exceptions.NoEnquiryFoundException;
 import com.cjc.loanapplication.exceptions.NoEnquiryFoundToUpdateException;
@@ -99,6 +100,23 @@ public class CrmServiceimpl implements CrmServicei {
 		{
 			throw new NoEnquiryFoundToUpdateException("No Enquiry found to update...!");
 		}
+	}
+
+	@Override
+	public Enquiry getEnquiryById(Integer enquiryId) {
+
+		Optional<Enquiry> op=crp.findById(enquiryId);
+		
+		if(op.isPresent())
+		{
+			Enquiry enq=op.get();
+			return enq;
+		}
+		else
+		{
+			throw new EnquiryIdNotFoundException("Enquiry id not found");
+		}
+		
 	}
 
 	

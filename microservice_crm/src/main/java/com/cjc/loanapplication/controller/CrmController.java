@@ -75,4 +75,12 @@ public class CrmController {
 		
 		return new ResponseEntity<Enquiry>(eq,HttpStatus.OK);
 	}
+	
+	@GetMapping("/getEnquiryById/{enquiryId}")
+	public ResponseEntity<Enquiry> getEnquiryById(@PathVariable Integer enquiryId)
+	{
+		Enquiry enq=csi.getEnquiryById(enquiryId);
+		
+		return new ResponseEntity<Enquiry>(enq,HttpStatus.OK);
+	}
 }
