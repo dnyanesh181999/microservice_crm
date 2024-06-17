@@ -31,6 +31,8 @@ public class CustomerController {
 	
 	@Autowired
 	CustomerServiceI csi;
+	@Autowired
+	CrmController crm;
 	
 	@PostMapping(value = "/saveCustomer", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
 	public ResponseEntity<Customer> saveCustomer(@RequestPart("addressProof") MultipartFile adp,
@@ -52,6 +54,7 @@ public class CustomerController {
 		
 		Customer cust=om.readValue(json, Customer.class);
 		
+		
 		AllPersonalDocs apd = new AllPersonalDocs();
 		apd.setAddressProof(adp.getBytes());
 		apd.setPanCard(pc.getBytes());
@@ -70,6 +73,7 @@ public class CustomerController {
 		
 		Customer c=csi.saveCustomer(cust);
 		log.info("Loan Application save sucessfully");
+		
 		return new ResponseEntity<Customer>(c,HttpStatus.CREATED);
 		
 	}

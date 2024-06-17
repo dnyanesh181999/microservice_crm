@@ -119,6 +119,28 @@ public class CrmServiceimpl implements CrmServicei {
 		
 	}
 
+	@Override
+	public Enquiry updateEnquiryForLoan(Integer enquiryId) {
+	Optional<Enquiry> op=crp.findById(enquiryId);
+		
+		if(op.isPresent())
+		{
+			Enquiry enq=op.get();
+			
+			if(enq.getRemark()!=null)
+			{
+				enq.setRemark("Loan Applied");
+			}
+			return crp.save(enq);
+		}
+		else
+		{
+			throw new NoEnquiryFoundToUpdateException("No Enquiry found to update...!");
+		}
+		
+	}
+
+
 	
 	
 

@@ -18,4 +18,7 @@ public interface CrmServicei {
 
 	Enquiry getEnquiryById(Integer enquiryId);
 
+	Enquiry updateEnquiryForLoan(Integer enquiryId);
+
+
 }

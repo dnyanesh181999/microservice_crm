@@ -16,6 +16,7 @@ public class CustomerServiceImpl implements CustomerServiceI {
 
 	@Override
 	public Customer saveCustomer(Customer cust) {
+		cust.setStatus("Pending");
 		return cr.save(cust);
 		
 	}

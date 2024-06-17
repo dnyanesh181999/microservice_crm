@@ -11,4 +11,6 @@ public interface CrmRepository extends JpaRepository<Enquiry, Integer> {
 	
 	 public List<Enquiry> findAllByRemark(String remarkS);
 
+	public Enquiry findByEnquiryName(String enquiryName);
+
 }

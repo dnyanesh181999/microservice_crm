@@ -83,4 +83,23 @@ public class CrmController {
 		
 		return new ResponseEntity<Enquiry>(enq,HttpStatus.OK);
 	}
+	
+	
+	
+	@PutMapping("/updateEnquiryForLoan/{enquiryId}")
+	public ResponseEntity<Enquiry> updateEnquiryForLoan(@PathVariable Integer enquiryId)
+	{
+		Enquiry eq=csi.updateEnquiryForLoan(enquiryId);
+		log.info("Updating Enquiry to ApplyForLoan");
+		
+		return new ResponseEntity<Enquiry>(eq,HttpStatus.OK);
+	}
+	
+	
+	
+	
+	
+	
+	
+
 }
